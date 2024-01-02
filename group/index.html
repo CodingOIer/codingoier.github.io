@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高贵的抽座位系统</title>
+    <script>
+        const people = ['<img src="https://cdn.luogu.com.cn/upload/usericon/754324.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/983519.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/928579.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/579099.png">'];
+        var html = '';
+        function make() {
+            var vis = [0, 0, 0, 0];
+            for (var i = 0; i < 4; i++) {
+                var r = Math.floor(Math.random() * 4);
+                for (; vis[r];) {
+                    r = Math.floor(Math.random() * 4);
+                }
+                vis[r] = 1;
+                if (i == 1 || i == 3) {
+                    html += people[r] + '<br>';
+                }
+                else {
+                    html += people[r];
+                }
+            }
+            document.getElementById('people').innerHTML = html;
+            html = '';
+        }
+    </script>
+</head>
+
+<body>
+    <div id="people"></div>
+    <button onclick="make()">抽座位</button>
+</body>
+
+</html>
