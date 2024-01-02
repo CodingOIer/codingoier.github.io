@@ -5,10 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>高贵的抽座位系统</title>
+</head>
+
+<body>
+    <label for="cnt">次数</label><input id="cnt" type="text">
+    <div id="people"></div>
+    <button onclick="get()">抽座位</button>
     <script>
         const people = ['<img src="https://cdn.luogu.com.cn/upload/usericon/754324.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/983519.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/928579.png">', '<img src="https://cdn.luogu.com.cn/upload/usericon/579099.png">'];
         var html = '';
-        function make() {
+        function get() {
+            var cnt = document.getElementById('cnt').value;
+            for (var i = 0; i < cnt; i++) {
+                setTimeout(make, (i + 1) * 500, i + 1);
+            }
+        }
+        function make(id) {
             var vis = [0, 0, 0, 0];
             for (var i = 0; i < 4; i++) {
                 var r = Math.floor(Math.random() * 4);
@@ -23,15 +35,10 @@
                     html += people[r];
                 }
             }
-            document.getElementById('people').innerHTML = html;
+            document.getElementById('people').innerHTML = html + '<br>' + '<h2>' + (id == document.getElementById('cnt').value ? '-----END-----' : id) + '</h2>';
             html = '';
         }
     </script>
-</head>
-
-<body>
-    <div id="people"></div>
-    <button onclick="make()">抽座位</button>
 </body>
 
 </html>
